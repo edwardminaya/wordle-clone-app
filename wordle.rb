@@ -10,6 +10,25 @@ end
 n = word_list.length
 game_word = word_list[rand(0..n)]
 
+# check users guess against choosen word
+def check_users_guess(array, input, game_word)
+  array_game = game_word.split("")
+  array_input = input.split("")
+  game_input = array_game.zip(array_input)
+
+  hash = Hash.new
+  game_input.each do |pair|
+    if pair[0] == pair[1]
+      hash[pair[1]] = "yes"
+    elsif game_word.index(pair[1]) != nil
+      hash[pair[1]] = "close"
+    else
+      hash[pair[1]] = "no"
+    end
+  end
+  array << hash
+end
+
 # Asking user for guesses
 while true
   puts "WORDLE CLONE APP"
@@ -19,19 +38,17 @@ while true
   word_list.each do |word|
     if word == input
       valid_word = true
+      all_entries = []
+      check_users_guess(all_entries, input, game_word)
+      p all_entries
     end
   end
   if valid_word
     break
   else
-    puts "Word not in list"
+    puts "\e[31mWord not in list\e[0m"
   end
 end
-
-# Users guesses
-user_guesses = []
-user_guesses << input
-p user_guesses
 
 # This will change color of text
 # puts "\e[31mThis text will be red.\e[0med"
