@@ -15,21 +15,46 @@ def check_users_guess(array, input, game_word)
   array_game = game_word.split("")
   array_input = input.split("")
   game_input = array_game.zip(array_input)
-
-  hash = Hash.new
+  word = []
   game_input.each do |pair|
+    x = []
     if pair[0] == pair[1]
-      hash[pair[1]] = "yes"
+      x << pair[1]
+      x << "yes"
+      word << x
     elsif game_word.index(pair[1]) != nil
-      hash[pair[1]] = "close"
+      x << pair[1]
+      x << "close"
+      word << x
     else
-      hash[pair[1]] = "no"
+      x << pair[1]
+      x << "no"
+      word << x
     end
   end
-  array << hash
+  array << word
+  puts "----------"
+end
+
+# Display Entries
+def display(entries)
+  entries.each do |word|
+    string = ""
+    word.each do |letter|
+      if letter[1] == "yes"
+        string += "\e[32m#{letter[0]}\e[0m"
+      elsif letter[1] == "close"
+        string += "\e[33m#{letter[0]}\e[0m"
+      else
+        string += letter[0]
+      end
+    end
+    puts string
+  end
 end
 
 # Asking user for guesses
+all_entries = []
 while true
   puts "WORDLE CLONE APP"
   puts "Enter your guess:"
@@ -38,17 +63,12 @@ while true
   word_list.each do |word|
     if word == input
       valid_word = true
-      all_entries = []
       check_users_guess(all_entries, input, game_word)
-      p all_entries
+      display(all_entries)
     end
   end
-  if valid_word
+  if valid_word && all_entries.length == 5
     break
-  else
-    puts "\e[31mWord not in list\e[0m"
   end
 end
-
-# This will change color of text
-# puts "\e[31mThis text will be red.\e[0med"
+puts game_word
