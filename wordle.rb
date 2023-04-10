@@ -1,5 +1,9 @@
 require "./word_list.rb"
-target = WordList.new("words.txt").generate_word
+require "./guesses.rb"
+
+file = WordList.new
+word_list = file.word_list("words.txt")
+target = file.generate_word(word_list)
 
 # check users guess against choosen word
 def check_users_guess(array, input, target)
@@ -47,19 +51,19 @@ end
 # Asking user for guesses
 all_entries = []
 while true
-  puts "WORDLE CLONE APP"
-  puts "Enter your guess:"
-  input = gets.chomp.downcase
-  valid_word = false
-  word_list.each do |word|
-    if word == input
-      valid_word = true
-      check_users_guess(all_entries, input, game_word)
-      display(all_entries)
-    end
+  input = Guesses.new.prompt(word_list)
+  if input[1]
+    all_entries << input[0]
   end
-  if valid_word && all_entries.length == 5
-    break
-  end
+  # word_list.each do |word|
+  #   if word == input
+  #     valid_word = true
+  #     check_users_guess(all_entries, input, target)
+  #     display(all_entries)
+  #   end
+  # end
+  # if valid_word && all_entries.length == 5
+  #   break
+  # end
 end
 puts game_word
