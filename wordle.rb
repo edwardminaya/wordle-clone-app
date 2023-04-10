@@ -1,17 +1,8 @@
-# Read in txt file and create array with all the words
-word_list = []
-File.open("words.txt", "r") do |file|
-  file.each_line do |word|
-    word_list << word.chomp.slice(0..-1)
-  end
-end
-
-# Generate a random word
-n = word_list.length
-game_word = word_list[rand(0..n)]
+require "./word_list.rb"
+target = WordList.new("words.txt").generate_word
 
 # check users guess against choosen word
-def check_users_guess(array, input, game_word)
+def check_users_guess(array, input, target)
   array_game = game_word.split("")
   array_input = input.split("")
   game_input = array_game.zip(array_input)
