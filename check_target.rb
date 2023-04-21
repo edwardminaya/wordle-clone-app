@@ -4,6 +4,10 @@ class CheckTarget
 
     # Compare each character of guess with target_copy and update result array
     result = ""
+    if target == guess
+      result = true
+      return result
+    end
     guess.chars.each_with_index do |char, i|
       if char == target[i]
         result += "\e[32m#{char}\e[0m"
