@@ -9,7 +9,6 @@ target = file.generate_word(word_list)
 all_entries = []
 while true
   system("clear")
-  puts target
   all_entries.each do |word|
     puts word
   end
