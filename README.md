@@ -3,7 +3,7 @@
 This is a simple program that clones the wordle game. If you have not played it you can check it out here from New York Times.
 [Wordle](https://www.nytimes.com/games/wordle/index.html)
 
-This project is to practice my programming skills and learn how to refactore and improve the code over time.
+This project is to practice my programming skills and learn how to refactor and improve the code over time.
 
 # Installation
 
