@@ -15,6 +15,7 @@ You can clone the app to your machine and run in your terminal.
 # Usage
 
 Run the wordle.rb file in your command line.
+
 https://github.com/edwardminaya/wordle-clone-app/assets/97701763/b7687245-a057-4e9b-bdaa-a1ce8369cee3
 
 
